@@ -1,5 +1,7 @@
 # Una línea por video:  Título | URL | subtexto opcional
 # Pon una imagen con el mismo nombre del título para usarla de miniatura,
 # o una carpeta con ese nombre y fotos 1, 2, 3... para que pasen como gif.
-Big Buck Bunny | https://www.youtube.com/watch?v=aqz-KE-bpKQ | Sin imagen: usa la miniatura de YouTube
-Video dos | https://youtu.be/jRGrNDV2mKc | Con carpeta de fotos
+
+TWICE MÚSICA - No Hay Nadie Como Tú | https://www.youtube.com/watch?v=oaB_kyaDjPI | Sin imagen: usa la miniatura de YouTube
+
+TWICE MÚSICA - No Me Fallarás | https://www.youtube.com/watch?v=Excn0Q9BOaE | Sin imagen: usa la miniatura de YouTube

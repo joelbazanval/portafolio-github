@@ -1,5 +1,5 @@
 # Una línea por red:  Nombre | URL
 # Icono: pon una imagen con el mismo nombre (TikTok.svg, Instagram.png...).
 # Si no hay imagen, TikTok, Instagram y YouTube usan su icono propio.
-TikTok | https://www.tiktok.com/
+TikTok | https://www.tiktok.com/@joelbazanv
 Instagram | https://www.instagram.com/joelbazanv/

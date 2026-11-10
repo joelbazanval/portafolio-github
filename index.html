@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Joel Bazán — Portafolio</title>
+<style>
+:root{--bg:#f4f2ee;--fg:#141414;--mut:#6d6a64;--card:#e4e1da;--line:#d6d2c9;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e0e0f;--fg:#f2f0ec;--mut:#8f8c85;--card:#1b1b1d;--line:#2a2a2d}}
+:root[data-theme="dark"]{--bg:#0e0e0f;--fg:#f2f0ec;--mut:#8f8c85;--card:#1b1b1d;--line:#2a2a2d}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;line-height:1.5}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px 60px}
+header{padding:44px 0 28px;text-align:center}
+h1{font-size:clamp(34px,8vw,64px);letter-spacing:-.03em;margin:0;line-height:1}
+.sub{color:var(--mut);margin:12px auto 0;max-width:520px;font-size:15px}
+.social{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:20px}
+.social a{display:flex;align-items:center;gap:8px;padding:9px 16px;border:1px solid var(--line);border-radius:99px;color:var(--fg);text-decoration:none;font-size:14px}
+.social svg{width:18px;height:18px;fill:currentColor}
+h2{font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--mut);margin:26px 0 12px;font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:6px;padding-bottom:14px}
+.chip{border:1px solid var(--line);background:none;color:var(--fg);padding:7px 12px;border-radius:99px;font-size:13px;cursor:pointer}
+.chip.on{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.grid{columns:2;column-gap:10px}
+@media(min-width:700px){.grid{columns:3}}
+@media(min-width:1000px){.grid{columns:4}}
+.it{position:relative;break-inside:avoid;margin:0 0 10px;border-radius:12px;overflow:hidden;cursor:pointer;background:var(--card)}
+.it .art{width:100%;display:block;background-size:cover;background-position:center}
+.it .art.anim{background-size:300% 300%;animation:mv 6s ease-in-out infinite}
+@keyframes mv{0%,100%{background-position:0 0}50%{background-position:100% 100%}}
+.cap{position:absolute;left:0;right:0;bottom:0;padding:22px 10px 8px;font-size:12px;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.6))}
+.cap small{display:block;opacity:.8;font-size:11px}
+.play{position:absolute;right:8px;top:8px;width:28px;height:28px;border-radius:50%;background:rgba(0,0,0,.55);display:grid;place-items:center}
+.play:after{content:"";border-left:9px solid #fff;border-top:6px solid transparent;border-bottom:6px solid transparent;margin-left:2px}
+.blog .mosaic{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;aspect-ratio:1/1.15}
+.blog .mosaic div{background-size:cover}
+.badge{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:34px;height:34px;border-radius:50%;background:var(--bg);color:var(--fg);display:grid;place-items:center;font-weight:800;font-size:16px;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+#modal{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;z-index:50;padding:16px}
+#modal.on{display:flex}
+.box{width:100%;max-width:900px;position:relative}
+.vid{aspect-ratio:16/9;background:#000;border-radius:10px;overflow:hidden;display:grid;place-items:center;color:#bbb;text-align:center;padding:12px;font-size:14px}
+.vid iframe{width:100%;height:100%;border:0}
+#x{position:absolute;right:0;top:-46px;width:40px;height:40px;border-radius:50%;border:0;background:#fff;color:#000;font-size:20px;cursor:pointer}
+.lnk{position:absolute;left:8px;top:8px;width:28px;height:28px;border-radius:50%;background:rgba(0,0,0,.55);display:grid;place-items:center}
+.vid.v{aspect-ratio:auto;height:min(78vh,680px);max-width:420px;margin:0 auto}
+#ext{display:block;text-align:center;color:#fff;font-size:14px;margin-top:12px}
+#lb{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;z-index:60;align-items:center;justify-content:center}
+#lb.on{display:flex}
+.lbx{max-width:100%;max-height:100%;overflow:auto;display:grid;place-items:center;-webkit-overflow-scrolling:touch}
+.zi{display:block;border-radius:10px;cursor:zoom-in;transition:width .25s;margin:auto}
+img.zi{max-width:92vw;max-height:80vh;width:auto;height:auto}
+.zi.z{width:220vw!important;max-width:none;max-height:none;cursor:zoom-out}
+#lx{position:fixed;right:14px;top:calc(env(safe-area-inset-top,0px) + 12px);z-index:61;width:40px;height:40px;border-radius:50%;border:0;background:#fff;color:#000;font-size:20px;cursor:pointer}
+article .pic{cursor:zoom-in}
+article h2{font-size:24px;color:var(--fg);letter-spacing:0;text-transform:none;margin:28px 0 8px}article h3{font-size:19px;margin:22px 0 6px}article li{font-size:17px}article blockquote{border-left:3px solid var(--line);margin:16px 0;padding:2px 16px;color:var(--mut)}article pre,article code{background:var(--card);border-radius:8px}article pre{padding:12px;overflow:auto}article code{padding:2px 5px;font-size:.9em}article table{border-collapse:collapse;display:block;overflow-x:auto}article td,article th{border:1px solid var(--line);padding:6px 10px}article hr{border:0;border-top:1px solid var(--line);margin:28px 0}
+.back{background:none;border:0;color:var(--fg);font-size:15px;padding:18px 0 8px;cursor:pointer}
+article{max-width:720px;margin:0 auto}
+article h1{font-size:clamp(28px,6vw,44px);margin:6px 0 18px}
+article p{font-size:17px}
+article img,article .pic{width:100%;border-radius:12px;margin:12px 0;height:auto;cursor:zoom-in}
+article a{color:var(--fg)}
+.rec{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.rec .it{margin:0}
+footer{text-align:center;color:var(--mut);font-size:12px;padding:30px 0 10px}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+</head>
+<body>
+<div class="wrap">
+<div id="home">
+<header>
+<h1>Joel Bazán</h1>
+<p class="sub">Artista visual · Ilustración · Animación 2D · Filmmaker</p>
+<div class="social">
+<a href="https://www.tiktok.com/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M16.6 2h-3.2v13.2a2.9 2.9 0 1 1-2.9-2.9c.3 0 .6 0 .8.1V9.1a6.1 6.1 0 1 0 5.3 6V8.6a7.5 7.5 0 0 0 4.4 1.4V6.8A4.4 4.4 0 0 1 16.6 2z"/></svg>TikTok</a>
+<a href="https://www.instagram.com/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm5.3-3.2a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4z"/></svg>Instagram</a>
+</div>
+</header>
+<h2>Portafolio</h2>
+<div class="chips" id="chips"></div>
+<div class="grid" id="grid"></div>
+</div>
+<div id="post" hidden></div>
+<footer>© Joel Bazán</footer>
+</div>
+
+<div id="modal"><div class="box"><button id="x" aria-label="Cerrar">✕</button><div class="vid" id="vid"></div><a id="ext" target="_blank" rel="noopener"></a></div></div>
+
+<div id="lb"><button id="lx" aria-label="Cerrar">✕</button><div class="lbx" id="lbx"></div></div>
+
+<script>
+const CATS={all:"Todo",album:"Portadas de álbumes",videoclip:"Videoclips",visualizer:"Visualizers",personaje:"Personajes",reel:"Reels",blog:"Blog"};
+let ITEMS=[],POSTS={};
+const ext=i=>i.url||(i.yt?"https://youtu.be/"+i.yt:"");
+function emb(u){let m;
+  if(m=u.match(/(?:youtu\.be\/|v=|shorts\/)([\w-]{11})/))return{s:`https://www.youtube.com/embed/${m[1]}?autoplay=1&playsinline=1&rel=0`,n:"YouTube"};
+  if(m=u.match(/instagram\.com\/((?:p|reel|tv)\/[\w-]+|[\w.]+)/))return{s:`https://www.instagram.com/${m[1]}/embed`,n:"Instagram",v:1};
+  if(m=u.match(/tiktok\.com\/.*video\/(\d+)/))return{s:`https://www.tiktok.com/embed/v2/${m[1]}`,n:"TikTok",v:1};
+  return{s:u,n:"el sitio"}}
+const bg=h=>`linear-gradient(135deg,hsl(${h} 65% 48%),hsl(${(h+70)%360} 70% 28%))`;
+const art=i=>i.img?`url("${encodeURI(i.img)}")`:bg(i.hue);
+const $=s=>document.querySelector(s);
+let cat="all",tick=0;const FR=[];
+const fr=(i,n)=>i.list&&i.list.length?`url("${encodeURI(i.list[n%i.list.length])}")`:bg((i.hue||200)+(n%4)*28);
+if(!matchMedia("(prefers-reduced-motion:reduce)").matches)setInterval(()=>{tick++;FR.forEach(([e,i,k])=>{e.style.backgroundImage=fr(i,tick+k)})},900);
+
+function card(i){
+  const d=document.createElement("div");d.className="it"+(i.cat==="blog"?" blog":"");
+  d.dataset.id=i.id;
+  if(i.cat==="blog"){
+    d.innerHTML=`<div class="mosaic">${[0,1,2,3].map(k=>`<div class="fr" style="background-image:${fr(i,k)}"></div>`).join("")}</div><span class="badge">B</span><div class="cap">${i.title}</div>`;
+  }else{
+    const vid=!!ext(i);
+    d.innerHTML=`<div class="art${i.list&&i.list.length>1?" fr":""}" style="aspect-ratio:1/${i.ratio};background-image:${i.list&&i.list.length>1?fr(i,0):art(i)}"></div>${vid?'<span class="play"></span><span class="lnk"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg></span>':""}<div class="cap">${i.title}${i.sub?`<small>${i.sub}</small>`:""}</div>`;
+  }
+  const a=d.querySelector(".art"),s0=a&&((i.list&&i.list[0])||(i.local&&i.img));if(s0){const im=new Image();im.onload=()=>{a.style.aspectRatio=im.width+"/"+im.height};im.src=encodeURI(s0)}
+  d.querySelectorAll(".fr").forEach((e,k)=>FR.push([e,i,k]));
+  d.onclick=()=>i.cat==="blog"?(location.hash="blog-"+i.id):ext(i)?openVid(i):openZoom(i.img?{url:encodeURI(i.img)}:{h:i.hue,r:i.ratio});
+  return d;
+}
+function renderChips(){
+  $("#chips").innerHTML="";
+  for(const k in CATS){const b=document.createElement("button");b.className="chip"+(k===cat?" on":"");b.textContent=CATS[k];b.onclick=()=>{cat=k;renderChips();renderGrid()};$("#chips").append(b)}
+}
+function renderGrid(){
+  const g=$("#grid");g.innerHTML="";FR.length=0;
+  ITEMS.filter(i=>cat==="all"||i.cat===cat).forEach(i=>g.append(card(i)));
+}
+function openVid(i){
+  const u=ext(i),e=emb(u);
+  $("#vid").className="vid"+(e.v?" v":"");
+  $("#vid").innerHTML=`<iframe src="${e.s}" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+  $("#ext").style.display=e.n==="YouTube"?"none":"block";
+  $("#ext").href=u;$("#ext").textContent="Abrir en "+e.n+" ↗";
+  $("#modal").classList.add("on");
+}
+function closeVid(){$("#modal").classList.remove("on");$("#vid").innerHTML=""}
+function openZoom(o){
+  $("#lbx").innerHTML=o.url?`<img class="zi" src="${o.url}" alt="">`:`<div class="zi" style="aspect-ratio:1/${o.r};background:${bg(o.h)};width:min(92vw,calc(80vh/${o.r}))"></div>`;
+  $("#lbx").firstChild.onclick=e=>{e.stopPropagation();e.currentTarget.classList.toggle("z")};
+  $("#lb").classList.add("on");
+}
+function closeZoom(){$("#lb").classList.remove("on");$("#lbx").innerHTML=""}
+$("#lx").onclick=closeZoom;
+$("#lb").onclick=e=>{if(e.target.id==="lb"||e.target.id==="lbx")closeZoom()};
+$("#x").onclick=closeVid;
+$("#modal").onclick=e=>{if(e.target.id==="modal")closeVid()};
+addEventListener("keydown",e=>{if(e.key==="Escape"){closeVid();closeZoom()}});
+
+function route(){
+  const h=location.hash.slice(1);
+  const id=h.startsWith("blog-")?h.slice(5):null;
+  const p=id&&POSTS[id];
+  $("#home").hidden=!!p;$("#post").hidden=!p;
+  if(!p){$("#post").innerHTML="";renderGrid();return}
+  const md=(p.md||"").replace(/\{\{\s*([^}\s]+)\s*\}\}/g,(m,n)=>p.imgs&&p.imgs[n.toLowerCase()]?`![${n}](${encodeURI(p.imgs[n.toLowerCase()])})`:m);
+  const body=window.marked?marked.parse(md):"<pre>"+md+"</pre>";
+  $("#post").innerHTML=`<button class="back" onclick="location.hash='';">← Portafolio</button><article><h1>${p.title}</h1>${body}</article><h2>Más blogs</h2><div class="rec" id="rec"></div>`;
+  FR.length=0;ITEMS.filter(i=>i.cat==="blog"&&i.id!==id).forEach(i=>$("#rec").append(card(i)));
+  document.querySelectorAll("article img").forEach(e=>e.onclick=()=>openZoom({url:e.getAttribute("src")}));scrollTo(0,0);
+}
+addEventListener("hashchange",route);
+const IC={tiktok:"M16.6 2h-3.2v13.2a2.9 2.9 0 1 1-2.9-2.9c.3 0 .6 0 .8.1V9.1a6.1 6.1 0 1 0 5.3 6V8.6a7.5 7.5 0 0 0 4.4 1.4V6.8A4.4 4.4 0 0 1 16.6 2z",instagram:"M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm5.3-3.2a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4z",youtube:"M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 23.5 12 31 31 0 0 0 23 7.2zM9.7 15V9l5.2 3z",link:"M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"};
+function redes(a){$(".social").innerHTML=a.map(r=>{const h=/tiktok/i.test(r.url)?"tiktok":/instagram/i.test(r.url)?"instagram":/youtu/i.test(r.url)?"youtube":"link";
+  const ic=r.icon?`<img src="${encodeURI(r.icon)}" alt="" style="width:18px;height:18px;object-fit:contain">`:`<svg viewBox="0 0 24 24"><path d="${IC[h]}"${h==="link"?' style="fill:none;stroke:currentColor;stroke-width:2"':""}/></svg>`;
+  return `<a href="${r.url}" target="_blank" rel="noopener">${ic}${r.name}</a>`}).join("")}
+fetch("content.json?"+Date.now()).then(r=>r.json()).then(d=>{ITEMS=d.items||[];POSTS=d.posts||{};if((d.redes||[]).length)redes(d.redes)}).catch(()=>{}).finally(()=>{renderChips();renderGrid();route();if(!ITEMS.length)$("#grid").innerHTML='<p style="color:var(--mut)">Sin contenido: falta content.json (node build.js) o las carpetas están vacías.</p>'});
+</script>
+</body>
+</html>

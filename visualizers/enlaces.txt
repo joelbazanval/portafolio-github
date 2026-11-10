@@ -1,0 +1,3 @@
+# Una línea por video:  Título | URL | subtexto opcional
+# Pon una imagen con el mismo nombre del título para usarla de miniatura,
+# o una carpeta con ese nombre y fotos 1, 2, 3... para que pasen como gif.

@@ -45,6 +45,7 @@ for (const [dir, cat] of Object.entries(CARPETAS)) {
 
   const files = ents.filter(e => e.isFile()), dirs = ents.filter(e => e.isDirectory());
   const imgs = files.filter(e => IMG.test(e.name)), claimed = new Set();
+  files.filter(e => !IMG.test(e.name) && !/\.txt$/i.test(e.name)).forEach(e => console.warn(`  AVISO: se ignora ${dir}/${e.name} (formato no soportado; usa jpg, png, webp, gif, svg o avif)`));
   const imgBy = new Map(imgs.map(e => [key(base(e.name)), e.name]));
   const dirBy = new Map(dirs.map(e => [key(e.name), e.name]));
   const links = files.filter(e => /\.txt$/i.test(e.name))
@@ -62,10 +63,12 @@ for (const [dir, cat] of Object.entries(CARPETAS)) {
       const d2 = dirBy.get(k); claimed.add('d:' + d2);
       const fl = ls(path.join(D, d2)).filter(x => x.isFile() && IMG.test(x.name)).map(x => `${dir}/${d2}/${x.name}`);
       if (fl.length) { it.list = fl; it.img = fl[0]; it.local = true; }
+      else console.warn(`  AVISO: la carpeta ${dir}/${d2} existe pero no tiene imágenes válidas (usa jpg, png, webp, gif, svg o avif; HEIC no funciona en la web)`);
     }
     if (!it.img && f) { it.img = `${dir}/${f}`; it.local = true; }   // imagen con el nombre del video = miniatura
     if (!it.img && yt(url)) it.img = `https://i.ytimg.com/vi/${yt(url)}/hqdefault.jpg`;  // si no, la de YouTube
     items.push(it);
+    console.log(`  ${dir}: "${it.title}" -> ${it.list ? it.list.length + ' foto(s) de carpeta' : it.local ? 'imagen propia' : it.img ? 'miniatura de YouTube (no encontró imagen ni carpeta con ese nombre)' : 'SIN miniatura'}`);
   }
   for (const e of imgs) if (!claimed.has('f:' + e.name))   // imágenes sueltas = fotos con zoom
     items.push({ id: uid(cat, base(e.name)), cat, title: nom(base(e.name)), img: `${dir}/${e.name}`, local: true, hue: hue(e.name), ratio: 1 });

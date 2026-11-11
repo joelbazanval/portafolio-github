@@ -99,10 +99,11 @@ function emb(u){let m;
   if(m=u.match(/tiktok\.com\/.*video\/(\d+)/))return{s:`https://www.tiktok.com/embed/v2/${m[1]}`,n:"TikTok",v:1};
   return{s:u,n:"el sitio"}}
 const bg=h=>`linear-gradient(135deg,hsl(${h} 65% 48%),hsl(${(h+70)%360} 70% 28%))`;
-const art=i=>i.img?`url("${encodeURI(i.img)}")`:bg(i.hue);
+const cssu=x=>`url('${encodeURI(x).replace(/'/g,"%27").replace(/\(/g,"%28").replace(/\)/g,"%29")}')`;
+const art=i=>i.img?cssu(i.img):bg(i.hue);
 const $=s=>document.querySelector(s);
 let cat="all",tick=0;const FR=[];
-const fr=(i,n)=>i.list&&i.list.length?`url("${encodeURI(i.list[n%i.list.length])}")`:bg((i.hue||200)+(n%4)*28);
+const fr=(i,n)=>i.list&&i.list.length?cssu(i.list[n%i.list.length]):bg((i.hue||200)+(n%4)*28);
 if(!matchMedia("(prefers-reduced-motion:reduce)").matches)setInterval(()=>{tick++;FR.forEach(([e,i,k])=>{e.style.backgroundImage=fr(i,tick+k)})},900);
 
 function card(i){

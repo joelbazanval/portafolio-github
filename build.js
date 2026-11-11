@@ -7,7 +7,7 @@ const IMG = /\.(jpe?g|png|webp|gif|svg|avif)$/i;
 const nat = (a, b) => a.localeCompare(b, undefined, { numeric: true });
 const slug = s => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 const nom = s => s.replace(/^\d+[-_. ]+/, '');           // quita el prefijo de orden: "01-Nombre" -> "Nombre"
-const base = f => f.replace(/\.[^.]+$/, '');
+const base = f => f.replace(/(\.(jpe?g|png|webp|gif|svg|avif))+$/i, '').replace(/\.[^.]+$/, (m) => /^\.(jpe?g|png|webp|gif|svg|avif|txt|md)$/i.test(m) ? '' : m);   // también quita ".jpg.jpg" (Windows oculta extensiones)
 const key = s => slug(nom(s));                           // "Mi Video.jpg" y "mi-video" se consideran el mismo nombre
 const ls = d => fs.existsSync(d) ? fs.readdirSync(d, { withFileTypes: true }).filter(e => !e.name.startsWith('.')).sort((a, b) => nat(a.name, b.name)) : [];
 const hue = s => [...s].reduce((a, c) => (a * 31 + c.charCodeAt(0)) % 360, 7);
@@ -70,6 +70,7 @@ for (const [dir, cat] of Object.entries(CARPETAS)) {
     items.push(it);
     console.log(`  ${dir}: "${it.title}" -> ${it.list ? it.list.length + ' foto(s) de carpeta' : it.local ? 'imagen propia' : it.img ? 'miniatura de YouTube (no encontró imagen ni carpeta con ese nombre)' : 'SIN miniatura'}`);
   }
+  for (const e of imgs) if (!claimed.has('f:' + e.name) && links.length && cat !== 'album' && cat !== 'personaje') console.warn(`  AVISO: la imagen ${dir}/${e.name} no coincide con ningún título de enlaces.txt, se muestra como foto aparte`);
   for (const e of imgs) if (!claimed.has('f:' + e.name))   // imágenes sueltas = fotos con zoom
     items.push({ id: uid(cat, base(e.name)), cat, title: nom(base(e.name)), img: `${dir}/${e.name}`, local: true, hue: hue(e.name), ratio: 1 });
   for (const e of dirs) if (!claimed.has('d:' + e.name)) { // carpetas sueltas = foto animada
@@ -89,6 +90,7 @@ const redes = [];
       const f = icons.get(key(name)); redes.push({ name, url, ...(f ? { icon: 'redes/' + f } : {}) });
     }
 }
-fs.writeFileSync(path.join(__dirname, 'content.json'), JSON.stringify({ items, posts, redes }));
+const out = path.join(__dirname, 'content.json'), json = JSON.stringify({ items, posts, redes });
+if (!fs.existsSync(out) || fs.readFileSync(out, 'utf8') !== json) fs.writeFileSync(out, json);   // no reescribe si no cambió
 const n = {}; items.forEach(i => n[i.cat] = (n[i.cat] || 0) + 1);
 console.log('content.json listo:', items.length, 'elementos', n);
